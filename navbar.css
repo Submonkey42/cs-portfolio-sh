@@ -1,12 +1,57 @@
 #navbar{
     text-align:center;
+    animation:rainbow;
+    animation-play-state: paused; 
+
+}
+@ebkit-keyframes wonky{
+    0%{background-color:red;}
+    10%{background-color:orange;}
+    20%{background-color:yellow;}
+    30%{background-color:lime;}
+    40%{background-color:blue;}
+    50%{background-color:purple;}
+    60%{background-color:red;}
+    70%{background-color:orange;}
+    80%{background-color:yellow;}
+    90%{background-color:lime;}
+    100%{background-color:blue;}
+    
+    
+}
+body{
+    -webkit-animation:.2s wonky infinite;
 }
 
 #navbar li{
     display:inline-block;
+        
+    @webkit-keyframes rainbow{
+    0%{background-color:red;}
+    10%{background-color:orange;}
+    20%{background-color:yellow;}
+    30%{background-color:lime;}
+    40%{background-color:blue;}
+    50%{background-color:purple;}
+    60%{background-color:red;}
+    70%{background-color:orange;}
+    80%{background-color:yellow;}
+    90%{background-color:lime;}
+    100%{background-color:blue;}
     border: 2px solid black;
-}
+    b
+    ackground-color:blue;
+    font-size:20px;
+    transition:0.5s all linear;
+      animation-play-state: running;
 
+}
+    #navbar li:hover{
+        background-color:red;
+        font-size:22px;
+        animation-play-state: running;
+
+    }
 #navbar a{
     
 }
