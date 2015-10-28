@@ -6,11 +6,9 @@
 #navbar li {
     display: inline-block;
     border: 2px solid black;
-    background-color: blue;
+    background-color:grey;
     /*font-size: 20px;*/
     /*transition: 0.5s all linear;*/
-    animation: .5s rainbow linear infinite;
-    animation-play-state: paused;
 }
 
 
@@ -18,7 +16,8 @@
 
 #navbar li:hover {
     
-    animation-play-state: running;
+animation: .5s rainbow linear infinite;
+    
 }@-webkit-keyframes rainbow {
     0% {
         background-color: red;
