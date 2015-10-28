@@ -19,6 +19,7 @@
 #rm {
     display:inline-block;
     border: 0px solid black;
+    
 }
 
 #rm:hover{
@@ -30,7 +31,7 @@
     width:200px;
     height:200px;
     text-align:center;
-    
+    text-emphasis:false;
 }
 @-webkit-keyframes imgexpand{
     0%{width:10px; height:10px;}
@@ -58,44 +59,49 @@
 #monstercat{
     border:2px solid black;
     width:50px;
-    
+    background-color:rgb(192,192,192);
 }
 
 #monstercat:hover{
-    animation: .5s mcrainbow linear infinite;
+    animation: .5s rainbow linear infinite;
 }
-        @-webkit-keyframes mcrainbow{
-            0% {
-        background-color: red;
-    }
-    10% {
-        background-color: orange;
-    }
-    20% {
-        background-color: yellow;
-    }
-    30% {
-        background-color: lime;
-    }
-    40% {
-        background-color: blue;
-    }
-    50% {
-        background-color: purple;
-    }
-    60% {
-        background-color: red;
-    }
-    70% {
-        background-color: orange;
-    }
-    80% {
-        background-color: yellow;
-    }
-    90% {
-        background-color: lime;
-    }
-    100% {
-        background-color: blue;
-    }
-        }
+ 
+#steamlogo{
+    border:2px solid black;
+    width:50px;
+    background-color:rgb(192,192,192);
+}
+
+#steamlogo:hover{
+    animation: .5s rainbow linear infinite;
+}
+
+#homelogo{
+    border:2px solid black;
+    width:50px;
+    background-color:rgb(192,192,192);
+}
+
+#homelogo:hover{
+    animation: .5s rainbow linear infinite;
+}
+
+#hardwarelogo{
+    border:2px solid black;
+    width:50px;
+    background-color:rgb(192,192,192);
+}
+
+#hardwarelogo:hover{
+    animation: .5s rainbow linear infinite;
+}
+
+#htmllogo{
+     border:2px solid black;
+    width:50px;
+    background-color:rgb(192,192,192);
+}
+
+#htmllogo:hover {
+    animation: .5s rainbow linear infinite;
+}
