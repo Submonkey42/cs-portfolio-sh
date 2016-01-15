@@ -56,10 +56,15 @@
     95%{width:200px; height:200px;}
 }
 
+#welcome-text{
+    
+}
+
 #monstercat{
     border:2px solid black;
     width:50px;
     background-color:rgb(192,192,192);
+    float:left;
 }
 
 #monstercat:hover{
@@ -70,6 +75,7 @@
     border:2px solid black;
     width:50px;
     background-color:rgb(192,192,192);
+    float:left;
 }
 
 #steamlogo:hover{
@@ -80,6 +86,7 @@
     border:2px solid black;
     width:50px;
     background-color:rgb(192,192,192);
+    float:left;
 }
 
 #homelogo:hover{
@@ -90,6 +97,7 @@
     border:2px solid black;
     width:50px;
     background-color:rgb(192,192,192);
+    float:left;
 }
 
 #hardwarelogo:hover{
@@ -100,6 +108,7 @@
      border:2px solid black;
     width:50px;
     background-color:rgb(192,192,192);
+    float:left;
 }
 
 #htmllogo:hover {
