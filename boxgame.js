@@ -3,6 +3,7 @@ var ctx = mycanvas.getContext("2d");
 var bullets = [];
 var enemies = [];
 var BULLETSPD = 6;
+var ENEMYSPD = 4;
 var bulletImg = document.getElementById("bulletImg")
 var bombImg = document.getElementById("bombImg")
 
@@ -30,7 +31,7 @@ var box = {
     canShoot: true,
     
     move: function() {
-        console.log(box.goLeft);
+
         if (box.goLeft && box.xPos > 0) {
             box.xPos = box.xPos - 5;
         }
@@ -44,7 +45,6 @@ var box = {
             box.yPos += 5;
         }
         
-        console.log(box.xPos);
     },
     shoot: function(){
         if (box.shootDefault && box.canShoot) {
@@ -77,6 +77,7 @@ function Bullet(xPos, yPos) {
      this.move = function(){
        this.yPos -= BULLETSPD;     
     }
+
 }
 
 function Enemy(xPos, yPos) {
@@ -86,22 +87,30 @@ function Enemy(xPos, yPos) {
     this.height = 20;
     
     this.draw = function(){
-        ctx.rect(this.xPos+5, this.yPos, 20, 20);
+        ctx.rect(this.xPos, this.yPos, 20, 20);
         ctx.stroke();
     }
+    this.move = function(){
+        this.yPos += ENEMYSPD;
+    }
+
 }
 
 document.addEventListener("keydown", function(evt) {
-    if (evt.keyCode === 37) {
+    if (evt.keyCode === 37 //||
+    ) {
         box.goLeft = true;
     }
-    if (evt.keyCode === 38) {
+    if (evt.keyCode === 38 
+    ) {
         box.goUp = true;
     }
-    if (evt.keyCode === 39) {
+    if (evt.keyCode === 39 
+    ) {
         box.goRight = true;
     }
-    if (evt.keyCode === 40) {
+    if (evt.keyCode === 40
+    ) {
         box.goDown = true;
     }
     if (evt.keyCode === 32) {
@@ -110,16 +119,20 @@ document.addEventListener("keydown", function(evt) {
 });
 
 document.addEventListener("keyup", function(evt) {
-    if (evt.keyCode === 37) {
+    if (evt.keyCode === 37 //|| evt.keyCode === 65
+    ) {
         box.goLeft = false;
     }
-    if (evt.keyCode === 38) {
+    if (evt.keyCode === 38 //|| evt.keyCode === 87
+    ) {
         box.goUp = false;
     }
-    if (evt.keyCode === 39) {
+    if (evt.keyCode === 39 //|| evt.keyCode === 68
+    ) {
         box.goRight = false;
     }
-    if (evt.keyCode === 40) {
+    if (evt.keyCode === 40 //|| evt.keyCode === 83
+    ) {
         box.goDown = false;
     }
     if (evt.keyCode === 32) {
@@ -139,10 +152,20 @@ function gameLoop() {
         bullets[i].draw()
     }
     
+    for(var e =0; e<enemies.length; e++){
+        enemies[e].move()
+        enemies[e].draw()
+
+    }
     
-    
-    
-    
+
     window.requestAnimationFrame(gameLoop);
 }
 gameLoop();
+
+
+var wave1 = setInterval(function(){
+    enemies.push(new Enemy(Math.random() * mycanvas.width-20, 0));
+}, 3000);
+
+
