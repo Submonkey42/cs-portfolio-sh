@@ -2,10 +2,7 @@
 <html>
     <head>
         <title> </title>
-    </head>
-    <body>
-
-<div>
+        <div>
     <div id="emulator">
         <p>To play this game, please, download the latest Flash player!</p>
         <br>
@@ -36,8 +33,8 @@
             {
                 var flashvars = 
                 {
-                    system : 'sega',
-                    url : '/roms/Flappy Bird (PD) v1.0.gen'
+                    system : 'nes',
+                    url : 'roms/Mega Man (U).nes'
                 };
                 var params = {};
                 var attributes = {};
@@ -46,7 +43,7 @@
                 params.allowFullScreen = 'true';
                 params.allowFullScreenInteractive = 'true';
 
-                swfobject.embedSWF('flash/Nesbox.swf', 'emulator', '640', '480', '11.2.0', 'flash/expressInstall.swf', flashvars, params, attributes);
+                swfobject.embedSWF("flash/Nesbox.swf", "emulator", "640", "480", "11.2.0", "flash/expressInstall.swf", flashvars, params, attributes);
             }
         }
 
@@ -54,6 +51,11 @@
     });
 
 </script>
+
+    </head>
+    <body>
+
+<div id='emulator'></div>
 
     </body>
 </html>
