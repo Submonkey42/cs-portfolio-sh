@@ -5,7 +5,12 @@ var timer;
 var secretsound = new Audio('LTTP_Secret.mp3','LTTP_Secret.ogg');
 var bombsound = new Audio('LTTP_Bomb_Blow.mp3','LTTP_Bomb_Blow.ogg')
 var close = true;
-var img = document.getElementById("doorclosed.jpg");
+var door = document.getElementById("doorclosed.jpg");
+var explode = document.getElementById("blank.jpg");
+var doordiv = document.getElementById("doorblock")
+
+
+
 
 function bombplay(){
     setTimeout(secretplay,500)
@@ -16,16 +21,25 @@ function secretplay(){
     secretsound.play();
 }
 
-
+function doorfinish(){
+    doordiv.style.display = "none";
+}
 
 function check_input() {
 
     //code for secret
     if(input == secret){
-    img = document.getElementById("doorpic")
+    door = document.getElementById("doorpic")
      bombplay();
-    img.src = "dooropen.jpg"
+    door.src = "dooropen.jpg"
+    
+    explode = document.getElementById("boom")
 
+    explode.style.display = "initial";
+    explode.src = "LTTP_Explosion.gif"
+
+
+    
      }
     }
 
@@ -36,8 +50,3 @@ $(document).keyup(function(e) {
     check_input();
 });
 
-function doortoggle(){
-    
-   
-    
-}
