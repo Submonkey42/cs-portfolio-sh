@@ -69,6 +69,7 @@ function Bullet(xPos, yPos) {
     this.width = 8;
     this.height = 8;
     
+    
     this.draw = function(){
         // ctx.rect(this.xPos+5, this.yPos, 10, 10);
         // ctx.stroke();
@@ -77,6 +78,8 @@ function Bullet(xPos, yPos) {
      this.move = function(){
        this.yPos -= BULLETSPD;     
     }
+
+    
 
 }
 
@@ -146,6 +149,14 @@ function gameLoop() {
     box.move();
     box.draw();
     box.shoot();
+    
+    if(Bullet.yPos < 10) {
+        Bullet.draw = null;
+        
+    }
+    if(Enemy.yPos > 390) {
+        Enemy.draw = null;
+    }
     
     for(var i =0; i<bullets.length; i++){
         bullets[i].move()
