@@ -13,10 +13,12 @@ var bulletImg = document.getElementById("bulletImg")
 var bombImg = document.getElementById("bombImg")
 var oceanImg = document.getElementById("oceanImg")
 var gameOverImg = document.getElementById("gameOverImg")
+var retryImg = document.getElementById("retryImg")
 var bgY = 0
 var bgspd = 1
 var score = 0
 var boxAlive = true
+var reloadPage = false
 
 
 
@@ -49,6 +51,8 @@ var box = {
         if(box.hp<=0) {
             boxAlive = false;
             ctx.drawImage(gameOverImg, 100, 256);
+          //  ctx.drawImage(retryImg, 215, 406);
+          retryButton.style.display = "initial";
         }
         
 
@@ -146,6 +150,13 @@ function Enemy(xPos, yPos) {
            }
         }
     }
+    
+
+    
+    
+    
+
+    
 
 
 //    function background() {

@@ -6,17 +6,35 @@ To change this template use Tools | Templates.
 <head>
     <link href='https://fonts.googleapis.com/css?family=Press+Start+2P' rel='stylesheet' type='text/css'>
     <style>
+    
+    @font-face
+    {
+        font-family:'Press Start 2P';
+        src:url('PressStart2P.ttf');
+    }
+    
+    
      #health  {
          font-family:'Press Start 2P', cursive;
      } 
      #score {
          font-family:'Press Start 2P', cursive;
      }
+     
+     #canvasDiv {
+         z-index:5;
+     }
+     
+     #testDiv {
+         z-index:10;
+         background-color: rgba(42,255,0, 0.6);
+     }
         
     </style>
 </head>
 <body>
     <canvas id="mycanvas" width="512" height="512" style="border: 2px solid black"></canvas>
+    
 <!--
 Images
 -->
@@ -24,15 +42,18 @@ Images
     <img id="bombImg" src="large_projectile.png" style="display:none"></img>
     <img id="oceanImg" src="wave.gif" style="display:none"></img>
     <img id="gameOverImg" src="gameOver.jpg" style="display:none;"></img>
+    <img id="retryImg" src="retry.jpg" style="display:none;" onclick="restart();"></img>
 
 <!--
 For stable version, use "boxgame_stable.js".
 For test version, use "boxgame_test.js".
 -->
 
-    <script src="boxgame_stable.js"></script>
+    <div id="canvasDiv"><script src="boxgame_sta.js"></script></div>
     <p id="health"></p>
     <p id="score"></p>
+    <input type="button" value="Retry" id="retryButton" onClick="window.location.href=window.location.href" style="display:none;"/>
+    <div id="testDiv"></div>
 </body>
 </html>
 
