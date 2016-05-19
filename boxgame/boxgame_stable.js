@@ -33,7 +33,7 @@ var box = {
     goDown: false,
     shootDefault: false,
     canShoot: true,
-    hp: 2500,
+    hp: 100,
     
    
     
@@ -82,8 +82,15 @@ var box = {
     },
     
     draw: function() {
-        ctx.rect(box.xPos, box.yPos, this.width, this.height);
-        ctx.stroke();
+                if(boxAlive==false) {
+            ctx.fillRect(box.xPos,box.yPos,this.width,this.height);
+            ctx.fillStyle = "#FF0000"
+                }
+            ctx.rect(box.xPos, box.yPos, this.width, this.height);
+            ctx.stroke();
+        
+
+        
     }
 }
 
