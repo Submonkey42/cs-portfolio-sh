@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> </title>
+        <style>
+            #wave {
+                width:64px;
+                height:64px;
+                
+            }
+            
+        </style>
+    </head>
+    <body>
+        <img id="wave" src="wave.gif"></img>
+            
+            <script type="text/javascript">
+            var mycanvas = document.getElementById("mycanvas");
+            var ctx = mycanvas.getContext("2d");
+            var wave= document.getElementById("wave.gif")
+            var x = 0;
+            var y = 0;
+            
+            while (x<400 && y<400) {
+                ctx.drawImage (wave, x, y)
+                x += 64;
+                y += 64;
+            };
+                           
+            
+            
+            </script>
+    </body>
+</html>
