@@ -33,7 +33,7 @@ var box = {
     goDown: false,
     shootDefault: false,
     canShoot: true,
-    hp: 100,
+    hp: 2500,
     
    
     
