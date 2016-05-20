@@ -14,6 +14,7 @@ var bombImg = document.getElementById("bombImg")
 var oceanImg = document.getElementById("oceanImg")
 var gameOverImg = document.getElementById("gameOverImg")
 var retryImg = document.getElementById("retryImg")
+var skullImg = document.getElementById("skullImg")
 var bgY = 0
 var bgspd = 1
 var score = 0
@@ -25,8 +26,8 @@ var reloadPage = false
 
 
 var box = {
-    xPos: 20,
-    yPos: 50,
+    xPos: 256,
+    yPos: 490,
     height: 20,
     width: 20,
     goLeft: false,
@@ -169,6 +170,8 @@ function Enemy(xPos, yPos) {
 //      DISPLAY STUFF      
 //      | | | | | | |      
 //      v v v v v v v      
+
+
 
 var displayHP = setInterval(function(){
     document.getElementById("health").innerHTML = "Health: "+box.hp
