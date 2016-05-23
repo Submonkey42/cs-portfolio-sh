@@ -7,19 +7,21 @@ var mycanvas = document.getElementById("mycanvas");
 var ctx = mycanvas.getContext("2d");
 var bullets = [];
 var enemies = [];
+var enemiesSP1 = [];
 var BULLETSPD = 6;
 var ENEMYSPD = 4;
-var bulletImg = document.getElementById("bulletImg")
-var bombImg = document.getElementById("bombImg")
-var oceanImg = document.getElementById("oceanImg")
-var gameOverImg = document.getElementById("gameOverImg")
-var retryImg = document.getElementById("retryImg")
-var skullImg = document.getElementById("skullImg")
-var bgY = 0
-var bgspd = 1
-var score = 0
-var boxAlive = true
-var reloadPage = false
+var ENEMYSP1SPD = 6;
+var bulletImg = document.getElementById("bulletImg");
+var bombImg = document.getElementById("bombImg");
+var oceanImg = document.getElementById("oceanImg");
+var gameOverImg = document.getElementById("gameOverImg");
+var retryImg = document.getElementById("retryImg");
+var skullImg = document.getElementById("skullImg");
+var bgY = 0;
+var bgspd = 1;
+var score = 0;
+var boxAlive = true;
+var EnemySP1_Spawnrate = 0;
 
 
 
@@ -47,6 +49,14 @@ var box = {
                 box.hp = box.hp-100;
                 enemies.splice(i,1);
             }            
+        }
+        
+        
+        for(i=0;i<enemiesSP1.length;i++) {
+           if(this.xPos < enemiesSP1[i].xPos + enemiesSP1[i].width && this.xPos + this.width > enemiesSP1[i].xPos && this.yPos < enemiesSP1[i].yPos + enemiesSP1[i].width && this.yPos + this.width > enemiesSP1[i].yPos) {
+                box.hp = box.hp-100;
+                enemiesSP1.splice(i,1);
+           }
         }
         
         if(box.hp<=0) {
@@ -125,6 +135,13 @@ function Bullet(xPos, yPos) {
                 score = score+100;
            }
         }
+        
+        for(i=0;i<enemiesSP1.length;i++) {
+           if(this.xPos < enemiesSP1[i].xPos + enemiesSP1[i].width && this.xPos + this.width > enemiesSP1[i].xPos && this.yPos < enemiesSP1[i].yPos + enemiesSP1[i].width && this.yPos + this.width > enemiesSP1[i].yPos) {
+                enemiesSP1.splice(i,1);
+                score = score+500;
+           }
+        }
        
     }
 
@@ -137,6 +154,7 @@ function Enemy(xPos, yPos) {
     this.yPos = yPos;
     this.width = 20;
     this.height = 20;
+    this.health = 1;
     
     this.draw = function(){
         ctx.rect(this.xPos, this.yPos, 20, 20);
@@ -147,10 +165,36 @@ function Enemy(xPos, yPos) {
         
         for(i=0;i<bullets.length;i++) {
            if(this.xPos < bullets[i].xPos + bullets[i].width && this.xPos + this.width > bullets[i].xPos && this.yPos < bullets[i].yPos + bullets[i].width && this.yPos + this.width > bullets[i].yPos) {
-                bullets.splice(i,1);
+          //      bullets.splice(i,1);
            }
         }
-    }
+    };
+}
+    
+    
+function EnemySP1(xPos, yPos) {
+    this.xPos = xPos;
+    this.yPos = yPos;
+    this.width = 18;
+    this.height = 18;
+    this.health = 1;
+    
+    this.draw = function(){
+        ctx.rect(this.xPos, this.yPos, 18, 18);
+        ctx.fillRect(this.xPos, this.yPos, 18, 18);
+        ctx.fillStyle="#00FF00";
+        ctx.stroke();
+    };
+    this.move = function(){
+        this.yPos +=ENEMYSP1SPD;
+        
+        for(i=0;i<bullets.length;i++) {
+           if(this.xPos < bullets[i].xPos + bullets[i].width && this.xPos + this.width > bullets[i].xPos && this.yPos < bullets[i].yPos + bullets[i].width && this.yPos + this.width > bullets[i].yPos) {
+            //    bullets.splice(i,1);
+           }
+        }
+    };
+}
     
 
     
@@ -174,14 +218,16 @@ function Enemy(xPos, yPos) {
 
 
 var displayHP = setInterval(function(){
-    document.getElementById("health").innerHTML = "Health: "+box.hp
+    document.getElementById("health").innerHTML = "Health: "+box.hp;
 },0); 
 
 var displayScore = setInterval(function() {
-    document.getElementById("score").innerHTML = "Score: "+score
+    document.getElementById("score").innerHTML = "Score: "+score;
 },0);
     
-    
+//var displaySpawn = setInterval(function() {
+  //  document.getElementById("spawn").innerHTML = "Spawn: "+EnemySP1_Spawnrate;
+//},0)    
 
 
 
@@ -189,7 +235,7 @@ var displayScore = setInterval(function() {
 //     | | | | |
 //     v v v v v
 
-}
+
 
 document.addEventListener("keydown", function(evt) {
     if (evt.keyCode === 37 && boxAlive
@@ -246,6 +292,11 @@ function gameLoop() {
 //    ctx.drawImage(oceanImg,0,bgY)
 
 
+
+
+    EnemySP1_Spawnrate = Math.floor((Math.random()*50+1));
+
+
     
     if(bullets.length > 0 && bullets[0]["yPos"] < 0) {
         bullets.shift();   
@@ -271,7 +322,11 @@ function gameLoop() {
 
     }
     
-
+    for(var i =0; i<enemiesSP1.length; i++){
+        enemiesSP1[i].move();
+        enemiesSP1[i].draw();
+        
+    }
 
     window.requestAnimationFrame(gameLoop);
 }
@@ -281,6 +336,12 @@ gameLoop();
 var wave1 = setInterval(function(){
     enemies.push(new Enemy(Math.random() * mycanvas.width-20, 0));
 }, 500);
+
+var waveSP = setInterval(function(){
+    if(EnemySP1_Spawnrate==10){
+    enemiesSP1.push(new EnemySP1(Math.random() * mycanvas.width-20, 0));
+    }
+},100);
 
 
 
