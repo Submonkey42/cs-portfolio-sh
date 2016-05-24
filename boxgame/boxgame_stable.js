@@ -17,7 +17,7 @@ var oceanImg = document.getElementById("oceanImg");
 var gameOverImg = document.getElementById("gameOverImg");
 var retryImg = document.getElementById("retryImg");
 var skullImg = document.getElementById("skullImg");
-var zeroImg = document.getElementById("zeroImg"); 
+var zeroImg = document.getElementById("zeroImg");
 var bgY = 0;
 var bgspd = .5;
 var score = 0;
@@ -101,7 +101,7 @@ var box = {
     draw: function() {
                 if(boxAlive==false) {
             ctx.fillStyle = "#FF0000"
-            ctx.beginPath();
+        ctx.beginPath();
             ctx.fillRect(box.xPos,box.yPos,this.width,this.height);
             ctx.closePath();
             ctx.fill();
