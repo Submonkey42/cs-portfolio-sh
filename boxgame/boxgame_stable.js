@@ -17,6 +17,7 @@ var oceanImg = document.getElementById("oceanImg");
 var gameOverImg = document.getElementById("gameOverImg");
 var retryImg = document.getElementById("retryImg");
 var skullImg = document.getElementById("skullImg");
+var zeroImg = document.getElementById("zeroImg"); 
 var bgY = 0;
 var bgspd = .5;
 var score = 0;
@@ -99,12 +100,15 @@ var box = {
     
     draw: function() {
                 if(boxAlive==false) {
-            ctx.fillRect(box.xPos,box.yPos,this.width,this.height);
             ctx.fillStyle = "#FF0000"
+            ctx.beginPath();
+            ctx.fillRect(box.xPos,box.yPos,this.width,this.height);
+            ctx.closePath();
+            ctx.fill();
                 }
             ctx.rect(box.xPos, box.yPos, this.width, this.height);
             ctx.stroke();
-        
+            
 
         
     }
@@ -181,10 +185,13 @@ function EnemySP1(xPos, yPos) {
     this.health = 1;
     
     this.draw = function(){
+        ctx.fillStyle="#00FF00";
+        ctx.beginPath();
         ctx.rect(this.xPos, this.yPos, 18, 18);
         ctx.fillRect(this.xPos, this.yPos, 18, 18);
-        ctx.fillStyle="#FF0000";
         ctx.stroke();
+        ctx.closePath();
+
     };
     this.move = function(){
         this.yPos +=ENEMYSP1SPD;
