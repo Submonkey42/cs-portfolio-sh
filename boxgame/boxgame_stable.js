@@ -8,9 +8,9 @@ var ctx = mycanvas.getContext("2d");
 var bullets = [];
 var enemies = [];
 var enemiesSP1 = [];
-var BULLETSPD = 6;
-var ENEMYSPD = 4;
-var ENEMYSP1SPD = 6;
+var BULLETSPD = 3;
+var ENEMYSPD = 2;
+var ENEMYSP1SPD = 4;
 var bulletImg = document.getElementById("bulletImg");
 var bombImg = document.getElementById("bombImg");
 var oceanImg = document.getElementById("oceanImg");
@@ -18,10 +18,11 @@ var gameOverImg = document.getElementById("gameOverImg");
 var retryImg = document.getElementById("retryImg");
 var skullImg = document.getElementById("skullImg");
 var bgY = 0;
-var bgspd = 1;
+var bgspd = .5;
 var score = 0;
 var boxAlive = true;
 var EnemySP1_Spawnrate = 0;
+var gamePaused = false;
 
 
 
@@ -53,7 +54,7 @@ var box = {
         
         
         for(i=0;i<enemiesSP1.length;i++) {
-           if(this.xPos < enemiesSP1[i].xPos + enemiesSP1[i].width && this.xPos + this.width > enemiesSP1[i].xPos && this.yPos < enemiesSP1[i].yPos + enemiesSP1[i].width && this.yPos + this.width > enemiesSP1[i].yPos) {
+           if(this.xPos < enemiesSP1[i].xPos + enemiesSP1[i].width && this.xPos + this.width > enemiesSP1[i].xPos && this.yPos < enemiesSP1[i].yPos + enemiesSP1[i].width && this.yPos + this.width > enemiesSP1[i].yPos && boxAlive) {
                 box.hp = box.hp-100;
                 enemiesSP1.splice(i,1);
            }
@@ -69,16 +70,16 @@ var box = {
 
 
         if (box.goLeft && box.xPos > 0) {
-            box.xPos = box.xPos - 5;
+            box.xPos = box.xPos - 3;
         }
         if (box.goRight && box.xPos < 490) {
-            box.xPos += 5;
+            box.xPos += 3;
         }
         if (box.goUp && box.yPos > 0) {
-            box.yPos -= 5;
+            box.yPos -= 3;
         }
         if (box.goDown && box.yPos < 490) {
-            box.yPos += 5;
+            box.yPos += 3;
         }
         
         
@@ -182,7 +183,7 @@ function EnemySP1(xPos, yPos) {
     this.draw = function(){
         ctx.rect(this.xPos, this.yPos, 18, 18);
         ctx.fillRect(this.xPos, this.yPos, 18, 18);
-        ctx.fillStyle="#00FF00";
+        ctx.fillStyle="#FF0000";
         ctx.stroke();
     };
     this.move = function(){
@@ -280,7 +281,24 @@ document.addEventListener("keyup", function(evt) {
     if (evt.keyCode === 32) {
         box.shootDefault = false;
     }
-})
+});
+
+
+function keyDown(e) {
+    if (e.keyCode===80) pauseGame();
+}
+
+var game = setTimeout(gameLoop, 1000 / 30);
+function pauseGame() {
+  if (!gamePaused) {
+    game = clearTimeout(game);
+    gamePaused = true;
+  } else if (gamePaused) {
+    game = setTimeout(gameLoop, 1000 / 30);
+    gamePaused = false;
+  }
+}
+
 
 function gameLoop() {
     ctx.beginPath();
