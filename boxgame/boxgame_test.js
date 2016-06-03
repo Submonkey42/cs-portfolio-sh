@@ -12,7 +12,7 @@ var enemiesSP2 = [];
 var BULLETSPD = 6;
 var ENEMYSPD = 4;
 var ENEMYSP1SPD = 8;
-var ENEMYSP2SPD = 4;
+var ENEMYSP2SPD = 3.5;
 
 var bulletImg = document.getElementById("bulletImg");
 var bombImg = document.getElementById("bombImg");
