@@ -393,5 +393,3 @@ var waveSP = setInterval(function(){
 //   showPosition(event)
 //     }
 
-
-Status 
