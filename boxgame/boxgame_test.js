@@ -12,97 +12,9 @@ var enemiesSP2 = [];
 var BULLETSPD = 6;
 var ENEMYSPD = 4;
 var ENEMYSP1SPD = 8;
-var ENEMYSP2SPD = 3.5;
-
+var ENEMYSP2SPD = 4;
 var bulletImg = document.getElementById("bulletImg");
 var bombImg = document.getElementById("bombImg");
-
-var ocean_F1 = document.getElementById("oceanF1");
-var ocean_F2 = document.getElementById("oceanF2");
-var ocean_F3 = document.getElementById("oceanF3");
-var ocean_F4 = document.getElementById("oceanF4");
-var ocean_F5 = document.getElementById("oceanF5");
-var ocean_F6 = document.getElementById("oceanF6");
-var ocean_F7 = document.getElementById("oceanF7");
-var ocean_F8 = document.getElementById("oceanF8");
-var ocean_F9 = document.getElementById("oceanF9");
-var ocean_F10 = document.getElementById("oceanF10");
-var ocean_F11 = document.getElementById("oceanF11");
-var ocean_F12 = document.getElementById("oceanF12");
-var ocean_F13 = document.getElementById("oceanF13");
-var ocean_F14 = document.getElementById("oceanF14");
-var ocean_F15 = document.getElementById("oceanF15");
-var ocean_F16 = document.getElementById("oceanF16");
-var ocean_F17 = document.getElementById("oceanF17");
-var ocean_F18 = document.getElementById("oceanF18");
-var ocean_F19 = document.getElementById("oceanF19");
-var ocean_F20 = document.getElementById("oceanF20");
-var ocean_F21 = document.getElementById("oceanF21");
-var ocean_F22 = document.getElementById("oceanF22");
-var ocean_F23 = document.getElementById("oceanF23");
-var ocean_F24 = document.getElementById("oceanF24");
-var ocean_F25 = document.getElementById("oceanF25");
-var ocean_F26 = document.getElementById("oceanF26");
-var ocean_F27 = document.getElementById("oceanF27");
-var ocean_F28 = document.getElementById("oceanF28");
-var ocean_F29 = document.getElementById("oceanF29");
-var ocean_F30 = document.getElementById("oceanF30");
-var ocean_F31 = document.getElementById("oceanF31");
-var ocean_F32 = document.getElementById("oceanF32");
-
-var gameOverImg = document.getElementById("gameOverImg");
-var retryImg = document.getElementById("retryImg");
-var skullImg = document.getElementById("skullImg");
-var zeroImg = document.getElementById("zeroImg");
-var bgY = 0;
-var bgspd = 1;
-var score = 0;
-var boxAlive = true;
-var EnemySP1_Spawnrate = 0;
-var EnemySP2_Spawnrate = 0;
-var gameRun = true;
-
-//      ANIMATIONS
-//      | | | | |
-//      v v v v v
-var ocean = new Array();
-ocean[0] = ocean_F1;
-ocean[1] = ocean_F2;
-ocean[2] = ocean_F3;
-ocean[3] = ocean_F4;
-ocean[4] = ocean_F5;
-ocean[5] = ocean_F6;
-ocean[6] = ocean_F7;
-ocean[7] = ocean_F8;
-ocean[8] = ocean_F9;
-ocean[9] = ocean_F10;
-ocean[10] = ocean_F11;
-ocean[11] = ocean_F12;
-ocean[12] = ocean_F13;
-ocean[13] = ocean_F14;
-ocean[14] = ocean_F15;
-ocean[15] = ocean_F16;
-ocean[16] = ocean_F17;
-ocean[17] = ocean_F18;
-ocean[18] = ocean_F19;
-ocean[19] = ocean_F20;
-ocean[20] = ocean_F21;
-ocean[21] = ocean_F22;
-ocean[22] = ocean_F23;
-ocean[23] = ocean_F24;
-ocean[24] = ocean_F25;
-ocean[25] = ocean_F26;
-ocean[26] = ocean_F27;
-ocean[27] = ocean_F28;
-ocean[28] = ocean_F29;
-ocean[29] = ocean_F30;
-ocean[30] = ocean_F31;
-ocean[31] = ocean_F32;
-
-
-
-
-
 
 //      GAME OBJECTS
 //      | | | | | | 
@@ -269,36 +181,6 @@ function Bullet(xPos, yPos) {
 
     this.move = function() {
         this.yPos -= BULLETSPD;
-
-        // for (i = 0; i < enemies.length; i++) {
-        //     if (this.xPos < enemies[i].xPos + enemies[i].width && this.xPos + this.width > enemies[i].xPos && this.yPos < enemies[i].yPos + enemies[i].width && this.yPos + this.width > enemies[i].yPos) {
-        //         enemies[i].hp = enemies[i].hp - 1;
-        //         score = score + 100;
-        //         if (enemies[i].hp == 0) {
-        //             enemies.splice(i, 1);
-        //         }
-        //     }
-        // }
-
-        // for (i = 0; i < enemiesSP1.length; i++) {
-        //     if (this.xPos < enemiesSP1[i].xPos + enemiesSP1[i].width && this.xPos + this.width > enemiesSP1[i].xPos && this.yPos < enemiesSP1[i].yPos + enemiesSP1[i].width && this.yPos + this.width > enemiesSP1[i].yPos) {
-        //         enemiesSP1[i].hp = enemiesSP1[i].hp - 1;
-        //         score = score + 500;
-        //         if (enemiesSP1[i].hp == 0) {
-        //             enemiesSP1.splice(i, 1);
-        //         }
-        //     }
-        // }
-
-        // for (i = 0; i < enemiesSP2.length; i++) {
-        //     if (this.xPos < enemiesSP2[i].xPos + enemiesSP2[i].width && this.xPos + this.width > enemiesSP2[i].xPos && this.yPos < enemiesSP2[i].yPos + enemiesSP2[i].width && this.yPos + this.width > enemiesSP2[i].yPos) {
-        //         enemiesSP2[i].hp = enemiesSP2[i].hp - 1;
-        //         score = score + 500;
-        //         if (enemiesSP2[i].hp == 0) {
-        //             enemiesSP2.splice(i, 1);
-        //         }
-        //     }
-        // }
 
     }
 
@@ -493,7 +375,14 @@ function gameLoop() {
     if (enemies.length > 0 && enemies[0].yPos > 500) {
         enemies.shift();
     }
-
+    
+    if (enemiesSP1.length > 0 && enemiesSP1[0].yPos > 500) {
+        enemiesSP1.shift();
+    }
+    
+    if (enemiesSP2.length > 0 && enemiesSP2[0].yPos > 500) {
+        enemiesSP2.shift();
+    }
 
 
 
