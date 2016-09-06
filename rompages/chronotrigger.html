@@ -1,7 +1,17 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title> </title>
+        <style>
+            #emulator{
+                position:relative;
+                margin-left:30%;
+                margin-top:11%;
+}
+            body{
+                background-color:black;
+            }
+        </style>
+        <title>Chrono Trigger - SNES</title>
         <div>
     <div id="emulator">
         <p>To play this game, please, download the latest Flash player!</p>
@@ -22,7 +32,8 @@
         var emulator = $('#emulator');
         emulator.css('width', width);
         emulator.css('height', height);
-    }
+        
+    };
 
     $(function()
     {
@@ -44,11 +55,13 @@
                 params.allowFullScreenInteractive = 'true';
 
                 swfobject.embedSWF("../flash/Nesbox.swf", "emulator", "640", "480", "11.2.0", "flash/expressInstall.swf", flashvars, params, attributes);
+                
             }
         }
 
         embed();
     });
+    
 
 </script>
 
