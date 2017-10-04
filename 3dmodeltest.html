@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> </title>
+        <style>
+        
+        
+        
+        
+        
+        /*General*/
+        .sketchfab-embed-wrapper{
+            flex-direction:row;
+            margin:0 auto;
+            padding:13px;
+            position:relative;
+        }
+        
+        .showcase{
+            border:black 2px solid;
+            padding:5px;
+            overflow-x:scroll;
+            height:281px;
+        }
+        .button{
+
+        }
+        
+        #modelContainer{
+            border:black 2px solid;
+            width:670px;
+            height:510px;
+        }
+        /*Team Fortress 2*/
+        #sctf2{
+            /*position:fixed;*/
+        }
+        
+        .tf2-bg{
+            background-color:rgba(77,77,77,0.6);
+            border:2px black solid;
+            padding:5px;
+        }
+        #tf2-1-button{
+          width:100px;
+          height:100px;
+        }
+        
+        #tf2-2-button{
+            width:100px;
+            height:100px;
+        }
+
+
+        #tf2buttons{
+            display:flex;
+            flex-direction:row;
+        }
+        
+        /*Payday 2*/
+        #scpd2{
+            /*position:fixed;*/
+        }
+        
+        .pd2-bg{
+            background-color:rgba(77,77,77,0.6);
+            border:2px white solid;
+        }
+        #pd2-1-button{
+            width:100px;
+            height:100px;
+        }
+        #pd2-2-button{
+            width:100px;
+            height:100px;
+        }
+
+        #pd2buttons{
+            display:flex;
+            flex-direction:row;
+        }
+        
+        </style>
+    </head>
+    <body style="
+
+                background: #ff4b1f; /* fallback for old browsers */
+                background: -webkit-linear-gradient(to left, #ff4b1f , #1fddff); /* Chrome 10-25, Safari 5.1-6 */
+                background: linear-gradient(to left, #ff4b1f , #1fddff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        ">
+        <script src="showcase.js"></script>
+        <div id="modelContainer">                        <div class="sketchfab-embed-wrapper"><iframe  id="current_model" width="640" height="480" margin-top="10" src="https://sketchfab.com/models/c21d63f6cb784332b8ec2184170e293a/embed?autostart=1&frameborder=0&preload=1" allowvr allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" onmousewheel=""></iframe></div></div>
+        <br>
+        <p>Tf2</p>
+            <div  id="sctf2">    
+                <div class=showcase>
+                    <div id="tf2buttons">
+                        <div class="tf2-bg"><img class="button" src="icons/items/100px-RED_Level_1_Sentry_Gun.png" id="tf2-1-button" type="button" onclick="tf2_1tg();"></div>
+                        <div class="tf2-bg"><img class="button" src="icons/items/90px-Backpack_RoboCrate.png" id="tf2-2-button" type="button" onclick="tf2_2tg();"></div>
+                    </div>
+                </div>
+        
+            </div>
+        <br>
+        <!--<br>-->
+        <!--<br>-->
+        <!--<br>-->
+        <!--<br>-->
+        <!--<br>-->
+        <!--<br>-->
+        <!--<br>-->
+        <!--<br>-->
+        <!--<br>-->
+        <!--<br>-->
+        <!--<br>-->
+        <!--<br>-->
+        <p>Pd2</p>
+            <div id="scpd2">
+            <div class=showcase id="scpd2">
+                <div id="pd2buttons">
+                    <div class="pd2-bg"><img class="button" src="icons/items/Mask-Jimmy.png" id="pd2-1-button" type="button" onclick="pd2_1tg();"></div>
+                    <div class="pd2-bg"><img class="button" src="icons/items/HEF_Grenade.png" id="pd2-2-button" type="button" onclick="pd2_2tg();"></div>
+                </div>
+            </div>
+            </div>
+    </body>
+</html>

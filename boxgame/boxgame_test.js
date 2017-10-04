@@ -15,6 +15,51 @@ var ENEMYSP1SPD = 8;
 var ENEMYSP2SPD = 4;
 var bulletImg = document.getElementById("bulletImg");
 var bombImg = document.getElementById("bombImg");
+var gameOverImg = document.getElementById("gameOverImg");
+var skullImg = document.getElementById("skullImg");
+var zeroImg = document.getElementById("zeroImg");
+var bgY = 0;
+var bgspd = 1;
+var score = 0;
+var boxAlive = true;
+var EnemySP1_Spawnrate = 0;
+var EnemySP2_Spawnrate = 0;
+var gameRun = false;
+var menuRun = true;
+
+var hpbar = document.getElementById("hpbar");
+var hpf = document.getElementById("hpf");
+var hp24 = document.getElementById("hp24");
+var hp23 = document.getElementById("hp23");
+var hp22 = document.getElementById("hp22");
+var hp21 = document.getElementById("hp21");
+var hp20 = document.getElementById("hp20");
+var hp19 = document.getElementById("hp19");
+var hp18 = document.getElementById("hp18");
+var hp17 = document.getElementById("hp17");
+var hp16 = document.getElementById("hp16");
+var hp15 = document.getElementById("hp15");
+var hp14 = document.getElementById("hp14");
+var hp13 = document.getElementById("hp13");
+var hp12 = document.getElementById("hp12");
+var hp11 = document.getElementById("hp11");
+var hp10 = document.getElementById("hp10");
+var hp9 = document.getElementById("hp9");
+var hp8 = document.getElementById("hp8");
+var hp7 = document.getElementById("hp7");
+var hp6 = document.getElementById("hp6");
+var hp5 = document.getElementById("hp5");
+var hp4 = document.getElementById("hp4");
+var hp3 = document.getElementById("hp3");
+var hp2 = document.getElementById("hp2");
+var hp1 = document.getElementById("hp1");
+var hp0 = document.getElementById("hp0");
+
+
+
+var introSound = new Audio ('introSound.ogg');
+
+
 
 //      GAME OBJECTS
 //      | | | | | | 
@@ -23,7 +68,7 @@ var bombImg = document.getElementById("bombImg");
 
 var box = {
     xPos: 256,
-    yPos: 490,
+    yPos: 480,
     height: 20,
     width: 20,
     goLeft: false,
@@ -81,7 +126,7 @@ var box = {
             for(k = 0; k < enemiesSP1.length; k++) {
             if (enemiesSP1[k].xPos < bullets[i].xPos + bullets[i].width && enemiesSP1[k].xPos + enemiesSP1[k].width > bullets[i].xPos && enemiesSP1[k].yPos < bullets[i].yPos + bullets[i].width && enemiesSP1[k].yPos + enemiesSP1[k].width > bullets[i].yPos) {
                 enemiesSP1[k].hp = enemiesSP1[k].hp - 1;
-                score = score + 500
+                score = score + 500;
                 if (enemiesSP1[k].hp == 0) {
                     enemiesSP1.splice(k, 1);
                 }
@@ -96,7 +141,7 @@ var box = {
             for(k = 0; k < enemiesSP2.length; k++) {
             if (enemiesSP2[k].xPos < bullets[i].xPos + bullets[i].width && enemiesSP2[k].xPos + enemiesSP2[k].width > bullets[i].xPos && enemiesSP2[k].yPos < bullets[i].yPos + bullets[i].width && enemiesSP2[k].yPos + enemiesSP2[k].width > bullets[i].yPos) {
                 enemiesSP2[k].hp = enemiesSP2[k].hp - 1;
-                score = score + 500
+                score = score + 500;
                 if (enemiesSP2[k].hp == 0) {
                     enemiesSP2.splice(k, 1);
                 }
@@ -107,12 +152,7 @@ var box = {
             }
         }
         
-        if (box.hp <= 0) {
-            boxAlive = false;
-            ctx.drawImage(gameOverImg, 100, 256);
-            //  ctx.drawImage(retryImg, 215, 406);
-            retryButton.style.display = "initial";
-        }
+
 
 
 
@@ -125,12 +165,12 @@ var box = {
         if (box.goUp && box.yPos > 0) {
             box.yPos -= 6;
         }
-        if (box.goDown && box.yPos < 490) {
+        if (box.goDown && box.yPos < 475) {
             box.yPos += 6;
         }
 
 
-        if (boxAlive == false && box.yPos < 490) {
+        if (boxAlive == false && box.yPos < 475) {
             box.yPos += 2;
         }
 
@@ -140,26 +180,30 @@ var box = {
             bullets.push(new Bullet(box.xPos, box.yPos));
             box.canShoot = false;
             setTimeout(function() {
-                box.canShoot = true
+                box.canShoot = true;
             }, 430);
         }
     },
 
     draw: function() {
+        
+        ctx.fillStyle = "#ffffff";
+        ctx.fillRect(box.xPos, box.yPos, this.width, this.height);
+        ctx.rect(box.xPos, box.yPos, this.width, this.height);
+        ctx.stroke();
+        
         if (boxAlive == false) {
-            ctx.fillStyle = "#FF0000"
+            ctx.fillStyle = "#FF0000";
             ctx.beginPath();
             ctx.fillRect(box.xPos, box.yPos, this.width, this.height);
             ctx.closePath();
             ctx.fill();
-        }
-        ctx.rect(box.xPos, box.yPos, this.width, this.height);
-        ctx.stroke();
-
+            box.canShoot = false;
+            }
 
 
     }
-}
+};
 
 
 
@@ -198,8 +242,12 @@ function Enemy(xPos, yPos) {
 
 
     this.draw = function() {
+        ctx.fillStyle = "#ffffff";
+        ctx.beginPath();
         ctx.rect(this.xPos, this.yPos, 20, 20);
+        ctx.fillRect(this.xPos, this.yPos, 20, 20);
         ctx.stroke();
+        ctx.closePath();
     }
     this.move = function() {
         this.yPos += ENEMYSPD;
@@ -225,7 +273,6 @@ function EnemySP1(xPos, yPos) {
         ctx.fillRect(this.xPos, this.yPos, 18, 18);
         ctx.stroke();
         ctx.closePath();
-
     };
     this.move = function() {
         this.yPos += ENEMYSP1SPD;
@@ -260,10 +307,23 @@ function EnemySP2(xPos, yPos) {
 
     };
 }
+/////////////////////////////////////////
 
 
 
 
+
+
+
+
+
+
+//     SOUND
+//   | | | | |
+//   v v v v v
+function introPlay(){
+    introSound.play();
+}
 
 
 
@@ -281,17 +341,125 @@ function EnemySP2(xPos, yPos) {
 
 
 
-var displayHP = setInterval(function() {
-    document.getElementById("health").innerHTML = "Health: " + box.hp;
-}, 0);
+// var displayHP = setInterval(function() {
+//     document.getElementById("health").innerHTML = "Health: " + box.hp;
+// }, 0);
 
-var displayScore = setInterval(function() {
-    document.getElementById("score").innerHTML = "Score: " + score;
-}, 0);
+// var displayScore = setInterval(function() {
+//     document.getElementById("score").innerHTML = "Score: " + score;
+// }, 0);
 
-//var displaySpawn = setInterval(function() {
-//  document.getElementById("spawn").innerHTML = "Spawn: "+EnemySP1_Spawnrate;
-//},0)    
+// var displayVar1 = setInterval(function() {
+//  document.getElementById("var1").innerHTML = "menuRun: "+menuRun;
+// },0)    
+
+// var displayVar2 = setInterval(function() {
+//  document.getElementById("var2").innerHTML = "gameRun: "+gameRun;
+// },0)
+
+function hud() {
+    ctx.rect(0, 500, 532, 532);
+    ctx.fillStyle = "#C0C0C0";
+    ctx.fillRect(0, 500, 532, 532);
+    
+    ctx.fillStyle = "#000000";
+    ctx.font = "bold 10px press_start_2pregular";
+    ctx.fillText("Health", 3, 520);
+    
+    ctx.fillStyle = "#000000";
+    ctx.fillText(score, 430, 540);
+    ctx.fillText("Score", 430, 520)
+}
+
+var hpbarX = -36;
+var hpbarY = 400;
+
+function healthbar(){
+    ctx.drawImage(hpbar,hpbarX ,hpbarY);
+    
+    if(box.hp === 2500){
+    ctx.drawImage(hpf, hpbarX, hpbarY);   
+    }
+    if(box.hp === 2400){
+    ctx.drawImage(hp24, hpbarX, hpbarY);    
+    }
+    if(box.hp === 2300){
+    ctx.drawImage(hp23, hpbarX, hpbarY);    
+    }
+    if(box.hp === 2200){
+    ctx.drawImage(hp22, hpbarX, hpbarY);    
+    }
+    if(box.hp === 2100){
+    ctx.drawImage(hp21, hpbarX, hpbarY);    
+    }
+    if(box.hp === 2000){
+    ctx.drawImage(hp20, hpbarX, hpbarY);    
+    }
+    if(box.hp === 1900){
+    ctx.drawImage(hp19, hpbarX, hpbarY);    
+    }
+    if(box.hp === 1800){
+    ctx.drawImage(hp18, hpbarX, hpbarY);    
+    }
+    if(box.hp === 1700){
+    ctx.drawImage(hp17, hpbarX, hpbarY);    
+    }
+    if(box.hp === 1600){
+    ctx.drawImage(hp16, hpbarX, hpbarY);    
+    }
+    if(box.hp === 1500){
+    ctx.drawImage(hp15, hpbarX, hpbarY);    
+    }
+    if(box.hp === 1400){
+    ctx.drawImage(hp14, hpbarX, hpbarY);    
+    }
+    if(box.hp === 1300){
+    ctx.drawImage(hp13, hpbarX, hpbarY);    
+    }
+    if(box.hp === 1200){
+    ctx.drawImage(hp12, hpbarX, hpbarY);    
+    }
+    if(box.hp === 1100){
+    ctx.drawImage(hp11, hpbarX, hpbarY);    
+    }
+    if(box.hp === 1000){
+    ctx.drawImage(hp10, hpbarX, hpbarY);    
+    }
+    if(box.hp === 900){
+    ctx.drawImage(hp9, hpbarX, hpbarY);    
+    }
+    if(box.hp === 800){
+    ctx.drawImage(hp8, hpbarX, hpbarY);    
+    }
+    if(box.hp === 700){
+    ctx.drawImage(hp7, hpbarX, hpbarY);    
+    }
+    if(box.hp === 600){
+    ctx.drawImage(hp6, hpbarX, hpbarY);    
+    }
+    if(box.hp === 500){
+    ctx.drawImage(hp5, hpbarX, hpbarY);    
+    }
+    if(box.hp === 400){
+    ctx.drawImage(hp4, hpbarX, hpbarY);    
+    }
+    if(box.hp === 300){
+    ctx.drawImage(hp3, hpbarX, hpbarY);    
+    }
+    if(box.hp === 200){
+    ctx.drawImage(hp2, hpbarX, hpbarY);    
+    }
+    if(box.hp === 100){
+    ctx.drawImage(hp1, hpbarX, hpbarY);    
+    }
+    if(box.hp === 0){
+    ctx.drawImage(hp0, hpbarX, hpbarY);    
+    }
+}
+
+
+
+
 
 
 
@@ -317,13 +485,50 @@ document.addEventListener("keydown", function(evt) {
     if (evt.keyCode === 32 && boxAlive) {
         box.shootDefault = true;
     }
-    if (evt.keyCode === 80 && boxAlive) {
+    if(evt.keyCode === 82 && boxAlive === false) {
+        //window.location.href=window.location.href;
+        score = 0;
+        boxAlive = true;
+        EnemySP1_Spawnrate = 0;
+        EnemySP2_Spawnrate = 0;
+        gameRun = false;
+        menuRun = true;
+        
+        box.xPos = 256;
+        box.yPos = 480;
+        box.height = 20;
+        box.width = 20;
+        box.goLeft = false;
+        box.goRight = false;
+        box.goUp = false;
+        box.goDown = false;
+        box.shootDefault = false;
+        box.canShoot = true;
+        box.hp = 2500;
+
+    }
+    if (evt.keyCode === 80 && boxAlive && menuRun === false) {
+        pauseScr();
         gameRun = !gameRun;
         if (gameRun) {
-            gameLoop()
+            gameLoop();
+        }
+    }
+    if(evt.keyCode >= 0 && menuRun){
+        gameRun = true;
+        menuRun = false;
+        
+        if(menuRun) {
+            menuLoop();
+        }
+        if (gameRun) {
+            gameLoop();
         }
     }
 });
+
+
+
 
 document.addEventListener("keyup", function(evt) {
     if (evt.keyCode === 37 //|| evt.keyCode === 65
@@ -347,18 +552,65 @@ document.addEventListener("keyup", function(evt) {
     }
 });
 
+//  BUTTONS
+//  | | | |
+//  v v v v
+
+        
+
+
+//    MENU
+//   | | | |
+//   v v v v
+
+
+function menuMain(){
+        // ctx.font = "50px press_start_2pregular";
+        // ctx.fillText("BOXGAME",90, 70);
+        ctx.drawImage(document.getElementById("title"), 35, 70);
+        ctx.font = '20px press_start_2pregular';
+        ctx.fillText("Press Any Key to Start", 40, 400);
+} 
 
 
 
+
+function menuLoop() {
+        ctx.beginPath();
+        ctx.clearRect(0, 0, mycanvas.width, mycanvas.height);
+        menuMain();
+        
+        
+        if(menuRun){
+        window.requestAnimationFrame(menuLoop);
+        
+    }
+}
+////////////////////////////
+
+function pauseScr() {
+    ctx.beginPath();
+    ctx.fillStyle = "#000000";
+    ctx.font = "40px press_start_2pregular";
+    ctx.fillText("Paused", 140, 230);
+    
+    window.requestAnimationFrame(pauseScr);
+}
+
+////////////////////////////
 
 function gameLoop() {
     ctx.beginPath();
     ctx.clearRect(0, 0, mycanvas.width, mycanvas.height);
+    
     box.move();
     box.draw();
     box.shoot();
+    
 
-    //    ctx.drawImage(oceanImg,0,bgY)
+    
+    menuRun=false;
+
 
 
 
@@ -416,6 +668,18 @@ function gameLoop() {
             bullets.splice(i, 1);
         }
     }
+    
+    hud();
+    healthbar();
+    
+    if (box.hp <= 0) {
+    boxAlive = false;
+        ctx.drawImage(gameOverImg, 100, 256);
+        ctx.drawImage(skullImg, 205, 522);
+        ctx.fillStyle = "#000000";
+        ctx.font = '20px press_start_2pregular';
+        ctx.fillText("Press R to Retry", 110, 400); 
+    }
 
 
 
@@ -425,8 +689,16 @@ function gameLoop() {
 
 
 }
-gameLoop();
 
+if(menuRun){
+menuLoop();
+}
+
+
+
+if(gameRun){
+gameLoop();
+}
 
 var wave1 = setInterval(function() {
     if (gameRun) {

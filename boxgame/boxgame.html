@@ -7,10 +7,21 @@ To change this template use Tools | Templates.
     <link href='https://fonts.googleapis.com/css?family=Press+Start+2P' rel='stylesheet' type='text/css'>
     <style>
     
+    @font-face 
+    {
+    font-family: 'press_start_2pregular';
+    src: url('pressstart2p-webfont.woff2') format('woff2'),
+         url('pressstart2p-webfont.woff') format('woff'),
+         url('pressstart2p-webfont.svg#press_start_2pregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+    
     @font-face
     {
         font-family:'Press Start 2P';
-        src:url('PressStart2P.ttf');
+        src:url('PressStart2P.ttf') format('truetype');
     }
     
     
@@ -53,22 +64,59 @@ To change this template use Tools | Templates.
     </style>
 </head>
 <body>
-    <canvas id="mycanvas" width="512" height="512" style="border: 2px solid black"></canvas>
+    <canvas id="mycanvas" width="512" height="542" style="border: 2px solid black" onload="introPlay();"></canvas>
     
 <!--
 Images
 -->
-    <img id="bulletImg" src="default_bullet.gif" style="display:none"></img>
-    <img id="bombImg" src="large_projectile.png" style="display:none"></img>
-    <img id="gameOverImg" src="gameOver.jpg" style="display:none;"></img>
-    <img id="retryImg" src="retry.jpg" style="display:none;"></img>
-    <img id="skullImg" src="Skull.jpg" style="display:none;">
+    <img id="bulletImg" src="default_bullet.gif" style="display:none">
+    <img id="bombImg" src="large_projectile.png" style="display:none">
+    <img id="gameOverImg" src="images/other/gameOver.jpg" style="display:none;">
+    <img id="skullImg" src="images/icons/Skull.png" style="display:none;">
     <img id="zeroImg" src="0.jpg" style="display:none;">
+    <img id="title" src="images/menu/boxgameTitle.png" style="display:none;">
+    
+    
+    <img id="hpbar" src="images/hud/healthbar.png" style="display:none;">
+    <img id="hpf"    src="images/hud/hpf.png" style="display:none;">
+    <img id="hp24" src="images/hud/hp24.png" style="display:none;">
+    <img id="hp23" src="images/hud/hp23.png" style="display:none;">
+    <img id="hp22" src="images/hud/hp22.png" style="display:none;">
+    <img id="hp21" src="images/hud/hp21.png" style="display:none;">
+    <img id="hp20" src="images/hud/hp20.png" style="display:none;">
+    <img id="hp19" src="images/hud/hp19.png" style="display:none;">
+    <img id="hp18" src="images/hud/hp18.png" style="display:none;">
+    <img id="hp17" src="images/hud/hp17.png" style="display:none;">
+    <img id="hp16" src="images/hud/hp16.png" style="display:none;">
+    <img id="hp15" src="images/hud/hp15.png" style="display:none;">
+    <img id="hp14" src="images/hud/hp14.png" style="display:none;">
+    <img id="hp13" src="images/hud/hp13.png" style="display:none;">
+    <img id="hp12" src="images/hud/hp12.png" style="display:none;">
+    <img id="hp11" src="images/hud/hp11.png" style="display:none;">
+    <img id="hp10" src="images/hud/hp10.png" style="display:none;">
+    <img id="hp9" src="images/hud/hp9.png" style="display:none;">
+    <img id="hp8" src="images/hud/hp8.png" style="display:none;">
+    <img id="hp7" src="images/hud/hp7.png" style="display:none;">
+    <img id="hp6" src="images/hud/hp6.png" style="display:none;">
+    <img id="hp5" src="images/hud/hp5.png" style="display:none;">
+    <img id="hp4" src="images/hud/hp4.png" style="display:none;">
+    <img id="hp3" src="images/hud/hp3.png" style="display:none;">
+    <img id="hp2" src="images/hud/hp2.png" style="display:none;">
+    <img id="hp1" src="images/hud/hp1.png" style="display:none;">
+    <img id="hp0" src="images/hud/hp0.png" style="display:none;">
+    
+    
 <img src="instructions.png" style="width:50%; height:50%; float:right; display:relative;">
       
     <div style="width:50%; float:right;">
           <h1 style="margin-left:30%; font-family:'Press Start 2P'; font-size:20px;">Changelog</h1>
-        <div id="changelog_content">
+        <div id="changelog_content" style="height:155px; overflow-y:scroll;">
+            <a style="text-decoration:underline; font-size:20px; font-family:'Press Start 2P';">Update Version 1.3</a>
+            <br>
+            <br>
+            <li class="changelogItem"><a>Added Menu!</a></li>
+            <li class="changelogItem"><a>Added Health Bar!</a></li>
+            <br>
             <a style="text-decoration:underline; font-size:20px; font-family:'Press Start 2P';">Update Version 1.2</a>
             <br>
             <br>
@@ -85,15 +133,15 @@ For stable version, use "boxgame_stable.js".
 For test version, use "boxgame_test.js".
 -->
     <div style="width:48%">
-    <div id="canvasDiv"><script src="boxgame_stable.js"></script></div>
+    <div id="canvasDiv"><script src="boxgame_test.js"></script></div>
 <!--<img class="exampleImgs" src="EnemySP1.jpg" style="float:right;">
     <img class="exampleImgs" src="EnemySP1_red.jpg" style="float:right;">
     <img class="exampleImgs" src="Enemy.jpg" style="float:right;"> -->
     
     <p id="health"></p>
     <p id="score"></p>
-    <p id="spawn"></p>
-    <input type="button" value="Retry" id="retryButton" onClick="window.location.href=window.location.href" style="display:none;"/>
+    <p id="var1"></p>
+    <p id="var2"></p>
     </div>
     <div id="testDiv"></div>
 </body>
